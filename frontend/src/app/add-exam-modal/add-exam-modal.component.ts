@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-
 import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 
 import { APIService } from '../services/api.service';
@@ -40,13 +38,8 @@ export class AddExamModalComponent {
   selectedStatus = this.examStatuses[0].key;
 
 
-
   closeModal(mode: boolean) {
     this.close.emit(mode);
-  }
-
-  showAlert() {
-    alert("test");
   }
 
   onSubmit(): void {

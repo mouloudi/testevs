@@ -4,13 +4,11 @@ import { CommonModule } from '@angular/common';
 import { APIService } from '../services/api.service';
 import { apiEndpoints } from '../services/apiEndpoints';
 
+import { LucideAngularModule, User, MapPin, CalendarDays, Clock4 } from 'lucide-angular';
+
 import { Exam } from '../models/exam.model';
 import { EXAM_STATUS } from '../../conf/exam-status';
 import { AddExamModalComponent } from '../add-exam-modal/add-exam-modal.component';
-
-
-
-import { LucideAngularModule, User, MapPin, CalendarDays, Clock4 } from 'lucide-angular';
 
 
 
@@ -51,12 +49,10 @@ export class ExamensComponent implements OnInit {
           this.examsLength = this.exams.length;
         },
 
-        error : (error) => {
+        error: (error) => {
           alert(error.message); // Juste pour illustrer. A remplacer par un composant plus joli
         }
       }
-
-
     );
 
   }
