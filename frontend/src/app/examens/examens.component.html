@@ -1,0 +1,62 @@
+<div class="container p-20 mx-auto">
+    <div class="flex justify-between items-center bg-white p-4">
+        <div>
+            <h2 class="text-xl font-bold ">Mes examens</h2>
+            <p class="text-sm font-medium text-gray-700">{{examsLength}} examens à venir</p>
+        </div>
+        <button
+            (click)="openModal()"
+            class="bg-orange-500 text-white px-4 py-2 rounded-xl hover:bg-orange-600 text-sm font-bold cursor-pointer">
+            Organiser un examen
+        </button>
+    </div>
+
+    <app-add-exam-modal *ngIf="isModalOpen" (close)="closeModal($event)" ></app-add-exam-modal>
+
+
+    <div *ngFor="let exam of exams"
+        class="text-sm flex justify-between items-center rounded-xl border-1 shadow-xs border-gray-200 px-5 py-3 mt-3">
+        <div class="flex flex-1 items-center gap-2">
+            <span><lucide-angular [img]="UserIcon" class="my-icon" [size]="16" color="gray"></lucide-angular></span>
+            <p class="font-bold text-gray-700 truncate w-40">{{exam.name}}</p>
+        </div>
+
+        <div class="flex flex-1 items-center gap-2">
+            <span><lucide-angular [img]="MapPinIcon" class="my-icon" [size]="16" color="gray"></lucide-angular></span>
+
+            <p *ngIf="!exam.place; else noPlaceYet" class="italic text-gray-500">En attente</p>
+            <ng-template #noPlaceYet>
+                <p class="font-bold text-gray-700 truncate w-40">{{exam.place}}</p>
+            </ng-template>
+        </div>
+
+        <div class="flex flex-1 items-center gap-2">
+            <span><lucide-angular [img]="CalendarDaysIcon" class="my-icon" [size]="16"
+                    color="gray"></lucide-angular></span>
+
+            <p *ngIf="!exam.time; else noDateYet" class="italic text-gray-500">En attente</p>
+            <ng-template #noDateYet>
+                <p class="font-bold text-gray-700">{{getDayFromTimeStamp(exam.time)}}</p>
+            </ng-template>
+        </div>
+
+        <div class="flex flex-1 items-center gap-2">
+            <span><lucide-angular [img]="Clock4Icon" class="my-icon" [size]="16" color="gray"></lucide-angular></span>
+            <p *ngIf="!exam.time; else noTimeYet" class="italic text-gray-500">En attente</p>
+
+            <ng-template #noTimeYet>
+                <p class="font-bold text-gray-700">{{getHourFromTimeStamp(exam.time)}}h</p>
+            </ng-template>
+        </div>
+
+        <div class="flex-1 flex justify-start">
+            <div *ngIf="getStatusDetails(exam.status) as status"
+                class="flex items-center gap-2 text-xs px-2 py-2 rounded-xl font-bold"
+                [ngStyle]="{backgroundColor: status.bgColor}">
+                <span [ngStyle]="{color: status.color}">{{status.icon}}</span>
+                <p class="text-gray-500" [ngStyle]="{color: status.color}">{{ status.label}}</p>
+            </div>
+        </div>
+    </div>
+
+</div>

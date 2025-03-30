@@ -1,0 +1,65 @@
+<div class="fixed inset-0 flex items-center justify-center z-50">
+    <div class="absolute inset-0 bg-gray-800 opacity-50" (click)="closeModal(false)"></div>
+
+    <div class="bg-white px-12 py-8 rounded-xl shadow-lg z-50 w-full max-w-xl">
+        <h2 class="text-xl font-bold mb-4">Organisation d'un examen</h2>
+        <form [formGroup]="addExamForm" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold" for="name">
+                    Nom du candidat *
+                </label>
+                <div *ngIf="addExamForm.get('name')?.invalid && addExamForm.get('name')?.touched" class="text-xs text-orange-600 mt-1 mb-1" >
+                    Veuillez renseigner un nom (min 3 caractères)
+                  </div>
+
+                <input
+                    class="shadow appearance-none border border-gray-300 p-3 text-sm rounded w-full mt-2  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    formControlName="name" id="name" type="text" required />
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="place">
+                    Lieu
+                </label>
+                <input
+                    class="shadow appearance-none border border-gray-300 p-3 text-sm rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    formControlName="place" id="place" type="text" />
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="time">
+                    Quand ?
+                </label>
+                <input
+                    class="shadow appearance-none border border-gray-300 p-3 text-sm rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    formControlName="time"  id="time" type="datetime-local" />
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="status">
+                    Statut
+                </label>
+
+                <select
+                    class="shadow appearance-none border rounded w-full border-gray-300 p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-sm"
+                    id="status" formControlName="status" [(ngModel)]="selectedStatus" >
+                    <option *ngFor="let status of examStatuses" [value]="status.key" > 
+                        {{ status.value.label }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="flex items-center justify-end">
+                <button
+                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-5 rounded-lg text-sm focus:outline-none focus:shadow-outline cursor-pointer"
+                    type="button" (click)="closeModal(false)">
+                    Fermer
+                </button>
+                <button
+                    [disabled]="addExamForm.invalid || isLoading"
+                    class="bg-orange-500 disabled:bg-gray-500 hover:bg-orange-700 text-white font-bold py-2 px-5 rounded-lg text-sm focus:outline-none focus:shadow-outline ml-2 enabled:cursor-pointer"
+                    type="submit">
+                    {{isLoading ? 'Chargement...' : 'Enregistrer'}}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

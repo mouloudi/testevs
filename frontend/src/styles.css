@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+.mdc-snackbar__surface {
+    background:white !important;
+    border-radius:20px;
+}
+
+.matsnackbaraction:hover {
+    background-color: red !important;
+}
