@@ -11,6 +11,10 @@
 npm-debug.log
 yarn-error.log
 
+.vscode/
+.editorignore
+.gitignore
+
 # IDEs and editors
 .idea/
 .project
