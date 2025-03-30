@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ExamensComponent } from './exams/examens.component';
+import { ExamensComponent } from './examens/examens.component';
 
 
 @Component({
